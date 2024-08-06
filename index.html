@@ -59,6 +59,12 @@
         #viewport-params-expand {
             top: 30px;
         }
+        #paymentIframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            display: none;
+        }
     </style>
 </head>
 
@@ -101,13 +107,18 @@
             document.documentElement.className = Telegram.WebApp.colorScheme;
         });
 
-        // Show main button
+        // Show PAY button
         Telegram.WebApp.MainButton.setParams({
-            text: 'Main Button'
+            text: 'PAY'
         });
+
         Telegram.WebApp.MainButton.onClick(function () {
-            Telegram.WebApp.showAlert('Main Button was clicked')
-        });	
+            // Отобразить iframe с нужным URL
+            var iframe = document.getElementById('paymentIframe');
+            iframe.src = 'https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=robo-demo-test&OutSum=1&invoiceID=&SignatureValue=c67c65eea449afd27654b74c072f7ed3';
+            iframe.style.display = 'block'; // Показать iframe
+        });
+
         Telegram.WebApp.MainButton.show();
 
         // Function to call showPopup API
