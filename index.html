@@ -102,13 +102,40 @@
         });
 
         // Show main button
+        // Show PAY button
         Telegram.WebApp.MainButton.setParams({
             text: 'PAY'
         });
+
         Telegram.WebApp.MainButton.onClick(function () {
-            //Telegram.WebApp.showAlert('PAY Button was clicked')
-            Telegram.WebApp.openTelegramLink('https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=robo-demo-test&OutSum=1&invoiceID=&SignatureValue=c67c65eea449afd27654b74c072f7ed3');
+            // Создаем iframe
+            var iframe = document.createElement('iframe');
+            iframe.src = 'https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=robo-demo-test&OutSum=1&invoiceID=&SignatureValue=c67c65eea449afd27654b74c072f7ed3';
+            iframe.style.width = '100%'; // Устанавливаем ширину iframe
+            iframe.style.height = '600px'; // Устанавливаем высоту iframe
+            iframe.style.border = 'none'; // Убираем бордер
+
+            // Создаем контейнер для iframe
+            var container = document.createElement('div');
+            container.style.position = 'fixed';
+            container.style.top = '0';
+            container.style.left = '0';
+            container.style.width = '100%';
+            container.style.height = '100%';
+            container.style.backgroundColor = 'white'; // Фон контейнера
+            container.style.zIndex = '1000'; // Чтобы контейнер был поверх всего остального контента
+
+            container.appendChild(iframe);
+
+            // Добавляем контейнер в body
+            document.body.appendChild(container);
+
+            // Можно добавить функциональность закрытия iframe, если необходимо
+            container.onclick = function () {
+                document.body.removeChild(container);
+            };
         });
+
         Telegram.WebApp.MainButton.show();
 
         // Function to call showPopup API
