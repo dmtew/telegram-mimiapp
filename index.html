@@ -106,8 +106,8 @@
             text: 'PAY'
         });
         Telegram.WebApp.MainButton.onClick(function () {
-            Telegram.WebApp.showAlert('PAY Button was clicked')
-            Telegram.WebApp.openLink('https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=robo-demo-test&OutSum=1&invoiceID=&SignatureValue=c67c65eea449afd27654b74c072f7ed3',{try_instant_view:true});
+            //Telegram.WebApp.showAlert('PAY Button was clicked')
+            Telegram.WebApp.openTelegramLink('https://auth.robokassa.ru/Merchant/Index.aspx?MerchantLogin=robo-demo-test&OutSum=1&invoiceID=&SignatureValue=c67c65eea449afd27654b74c072f7ed3');
         });
         Telegram.WebApp.MainButton.show();
 
